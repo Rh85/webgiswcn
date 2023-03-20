@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/FCD_2014_dissolve_1.js"></script>
+        <script src="data/KIKN_Diss_2.js"></script>
+        <script src="data/IKN_BufferZeroPointIKN_3.js"></script>
+        <script src="data/IKN_BufferBuffer50km_4.js"></script>
+        <script src="data/IKN_BufferBuffer40km_5.js"></script>
+        <script src="data/IKN_BufferBuffer30km_6.js"></script>
+        <script src="data/IKN_BufferBuffer20km_7.js"></script>
+        <script src="data/IKN_BufferBuffer10km_8.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-1.0648567159088043,116.4688712201287],[-0.6996597573092803,117.01054817814547]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_FCD_2014_0');
+        map.getPane('pane_FCD_2014_0').style.zIndex = 400;
+        var img_FCD_2014_0 = 'data/FCD_2014_0.png';
+        var img_bounds_FCD_2014_0 = [[-2.4176359241508685,115.2267218309542],[1.476830327092487,117.62899656374663]];
+        var layer_FCD_2014_0 = new L.imageOverlay(img_FCD_2014_0,
+                                              img_bounds_FCD_2014_0,
+                                              {pane: 'pane_FCD_2014_0'});
+        bounds_group.addLayer(layer_FCD_2014_0);
+        map.addLayer(layer_FCD_2014_0);
+        function pop_FCD_2014_dissolve_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">gridcode</th>\
+                        <td>' + (feature.properties['gridcode'] !== null ? autolinker.link(feature.properties['gridcode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FCD_2014_dissolve_1_0(feature) {
+            switch(String(feature.properties['gridcode'])) {
+                case '1':
+                    return {
+                pane: 'pane_FCD_2014_dissolve_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(245,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2':
+                    return {
+                pane: 'pane_FCD_2014_dissolve_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,139,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3':
+                    return {
+                pane: 'pane_FCD_2014_dissolve_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(245,245,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '4':
+                    return {
+                pane: 'pane_FCD_2014_dissolve_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,247,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_FCD_2014_dissolve_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(21,170,140,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_FCD_2014_dissolve_1');
+        map.getPane('pane_FCD_2014_dissolve_1').style.zIndex = 401;
+        map.getPane('pane_FCD_2014_dissolve_1').style['mix-blend-mode'] = 'normal';
+        var layer_FCD_2014_dissolve_1 = new L.geoJson(json_FCD_2014_dissolve_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FCD_2014_dissolve_1',
+            layerName: 'layer_FCD_2014_dissolve_1',
+            pane: 'pane_FCD_2014_dissolve_1',
+            onEachFeature: pop_FCD_2014_dissolve_1,
+            style: style_FCD_2014_dissolve_1_0,
+        });
+        bounds_group.addLayer(layer_FCD_2014_dissolve_1);
+        map.addLayer(layer_FCD_2014_dissolve_1);
+        function pop_KIKN_Diss_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KETERANGAN</th>\
+                        <td>' + (feature.properties['KETERANGAN'] !== null ? autolinker.link(feature.properties['KETERANGAN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KET'] !== null ? autolinker.link(feature.properties['KET'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Luas_Ha2</th>\
+                        <td>' + (feature.properties['Luas_Ha2'] !== null ? autolinker.link(feature.properties['Luas_Ha2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_KIKN_Diss_2_0() {
+            return {
+                pane: 'pane_KIKN_Diss_2',
+                opacity: 1,
+                color: 'rgba(232,46,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,158,23,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_KIKN_Diss_2');
+        map.getPane('pane_KIKN_Diss_2').style.zIndex = 402;
+        map.getPane('pane_KIKN_Diss_2').style['mix-blend-mode'] = 'normal';
+        var layer_KIKN_Diss_2 = new L.geoJson(json_KIKN_Diss_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_KIKN_Diss_2',
+            layerName: 'layer_KIKN_Diss_2',
+            pane: 'pane_KIKN_Diss_2',
+            onEachFeature: pop_KIKN_Diss_2,
+            style: style_KIKN_Diss_2_0,
+        });
+        bounds_group.addLayer(layer_KIKN_Diss_2);
+        map.addLayer(layer_KIKN_Diss_2);
+        function pop_IKN_BufferZeroPointIKN_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? autolinker.link(feature.properties['snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IKN_BufferZeroPointIKN_3_0() {
+            return {
+                pane: 'pane_IKN_BufferZeroPointIKN_3',
+                shape: 'diamond',
+                radius: 8.8,
+                opacity: 1,
+                color: 'rgba(61,128,53,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,176,74,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IKN_BufferZeroPointIKN_3');
+        map.getPane('pane_IKN_BufferZeroPointIKN_3').style.zIndex = 403;
+        map.getPane('pane_IKN_BufferZeroPointIKN_3').style['mix-blend-mode'] = 'normal';
+        var layer_IKN_BufferZeroPointIKN_3 = new L.geoJson(json_IKN_BufferZeroPointIKN_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IKN_BufferZeroPointIKN_3',
+            layerName: 'layer_IKN_BufferZeroPointIKN_3',
+            pane: 'pane_IKN_BufferZeroPointIKN_3',
+            onEachFeature: pop_IKN_BufferZeroPointIKN_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_IKN_BufferZeroPointIKN_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_IKN_BufferZeroPointIKN_3);
+        map.addLayer(layer_IKN_BufferZeroPointIKN_3);
+        function pop_IKN_BufferBuffer50km_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? autolinker.link(feature.properties['snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IKN_BufferBuffer50km_4_0() {
+            return {
+                pane: 'pane_IKN_BufferBuffer50km_4',
+                opacity: 1,
+                color: 'rgba(243,53,205,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,178,151,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IKN_BufferBuffer50km_4');
+        map.getPane('pane_IKN_BufferBuffer50km_4').style.zIndex = 404;
+        map.getPane('pane_IKN_BufferBuffer50km_4').style['mix-blend-mode'] = 'normal';
+        var layer_IKN_BufferBuffer50km_4 = new L.geoJson(json_IKN_BufferBuffer50km_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IKN_BufferBuffer50km_4',
+            layerName: 'layer_IKN_BufferBuffer50km_4',
+            pane: 'pane_IKN_BufferBuffer50km_4',
+            onEachFeature: pop_IKN_BufferBuffer50km_4,
+            style: style_IKN_BufferBuffer50km_4_0,
+        });
+        bounds_group.addLayer(layer_IKN_BufferBuffer50km_4);
+        map.addLayer(layer_IKN_BufferBuffer50km_4);
+        function pop_IKN_BufferBuffer40km_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? autolinker.link(feature.properties['snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IKN_BufferBuffer40km_5_0() {
+            return {
+                pane: 'pane_IKN_BufferBuffer40km_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,82,45,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IKN_BufferBuffer40km_5');
+        map.getPane('pane_IKN_BufferBuffer40km_5').style.zIndex = 405;
+        map.getPane('pane_IKN_BufferBuffer40km_5').style['mix-blend-mode'] = 'normal';
+        var layer_IKN_BufferBuffer40km_5 = new L.geoJson(json_IKN_BufferBuffer40km_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IKN_BufferBuffer40km_5',
+            layerName: 'layer_IKN_BufferBuffer40km_5',
+            pane: 'pane_IKN_BufferBuffer40km_5',
+            onEachFeature: pop_IKN_BufferBuffer40km_5,
+            style: style_IKN_BufferBuffer40km_5_0,
+        });
+        bounds_group.addLayer(layer_IKN_BufferBuffer40km_5);
+        map.addLayer(layer_IKN_BufferBuffer40km_5);
+        function pop_IKN_BufferBuffer30km_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? autolinker.link(feature.properties['snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IKN_BufferBuffer30km_6_0() {
+            return {
+                pane: 'pane_IKN_BufferBuffer30km_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,139,143,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IKN_BufferBuffer30km_6');
+        map.getPane('pane_IKN_BufferBuffer30km_6').style.zIndex = 406;
+        map.getPane('pane_IKN_BufferBuffer30km_6').style['mix-blend-mode'] = 'normal';
+        var layer_IKN_BufferBuffer30km_6 = new L.geoJson(json_IKN_BufferBuffer30km_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IKN_BufferBuffer30km_6',
+            layerName: 'layer_IKN_BufferBuffer30km_6',
+            pane: 'pane_IKN_BufferBuffer30km_6',
+            onEachFeature: pop_IKN_BufferBuffer30km_6,
+            style: style_IKN_BufferBuffer30km_6_0,
+        });
+        bounds_group.addLayer(layer_IKN_BufferBuffer30km_6);
+        map.addLayer(layer_IKN_BufferBuffer30km_6);
+        function pop_IKN_BufferBuffer20km_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? autolinker.link(feature.properties['snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IKN_BufferBuffer20km_7_0() {
+            return {
+                pane: 'pane_IKN_BufferBuffer20km_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IKN_BufferBuffer20km_7');
+        map.getPane('pane_IKN_BufferBuffer20km_7').style.zIndex = 407;
+        map.getPane('pane_IKN_BufferBuffer20km_7').style['mix-blend-mode'] = 'normal';
+        var layer_IKN_BufferBuffer20km_7 = new L.geoJson(json_IKN_BufferBuffer20km_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IKN_BufferBuffer20km_7',
+            layerName: 'layer_IKN_BufferBuffer20km_7',
+            pane: 'pane_IKN_BufferBuffer20km_7',
+            onEachFeature: pop_IKN_BufferBuffer20km_7,
+            style: style_IKN_BufferBuffer20km_7_0,
+        });
+        bounds_group.addLayer(layer_IKN_BufferBuffer20km_7);
+        map.addLayer(layer_IKN_BufferBuffer20km_7);
+        function pop_IKN_BufferBuffer10km_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? autolinker.link(feature.properties['snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IKN_BufferBuffer10km_8_0() {
+            return {
+                pane: 'pane_IKN_BufferBuffer10km_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_IKN_BufferBuffer10km_8');
+        map.getPane('pane_IKN_BufferBuffer10km_8').style.zIndex = 408;
+        map.getPane('pane_IKN_BufferBuffer10km_8').style['mix-blend-mode'] = 'normal';
+        var layer_IKN_BufferBuffer10km_8 = new L.geoJson(json_IKN_BufferBuffer10km_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_IKN_BufferBuffer10km_8',
+            layerName: 'layer_IKN_BufferBuffer10km_8',
+            pane: 'pane_IKN_BufferBuffer10km_8',
+            onEachFeature: pop_IKN_BufferBuffer10km_8,
+            style: style_IKN_BufferBuffer10km_8_0,
+        });
+        bounds_group.addLayer(layer_IKN_BufferBuffer10km_8);
+        map.addLayer(layer_IKN_BufferBuffer10km_8);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/IKN_BufferBuffer10km_8.png" /> IKN_Buffer Buffer10km': layer_IKN_BufferBuffer10km_8,'<img src="legend/IKN_BufferBuffer20km_7.png" /> IKN_Buffer Buffer 20km': layer_IKN_BufferBuffer20km_7,'<img src="legend/IKN_BufferBuffer30km_6.png" /> IKN_Buffer Buffer 30km': layer_IKN_BufferBuffer30km_6,'<img src="legend/IKN_BufferBuffer40km_5.png" /> IKN_Buffer Buffer 40km': layer_IKN_BufferBuffer40km_5,'<img src="legend/IKN_BufferBuffer50km_4.png" /> IKN_Buffer Buffer 50km': layer_IKN_BufferBuffer50km_4,'<img src="legend/IKN_BufferZeroPointIKN_3.png" /> IKN_Buffer Zero Point IKN': layer_IKN_BufferZeroPointIKN_3,'<img src="legend/KIKN_Diss_2.png" /> KIKN_Diss': layer_KIKN_Diss_2,'FCD_2014_dissolve<br /><table><tr><td style="text-align: center;"><img src="legend/FCD_2014_dissolve_1_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/FCD_2014_dissolve_1_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/FCD_2014_dissolve_1_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/FCD_2014_dissolve_1_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/FCD_2014_dissolve_1_4.png" /></td><td></td></tr></table>': layer_FCD_2014_dissolve_1,"FCD_2014": layer_FCD_2014_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_FCD_2014_dissolve_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['gridcode'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['gridcode']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FCD_2014_dissolve_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_FCD_2014_dissolve_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_FCD_2014_dissolve_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_FCD_2014_dissolve_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_FCD_2014_dissolve_1]);
+        });
+        </script>
+    </body>
+</html>
